@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calendar App</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+    <h1>Calendar</h1>
+    <div th:replace="fragments/calendar :: calendar"></div>
+    <hr />
+    <h2>Create Appointment</h2>
+    <form th:action="@{/appointments}" method="post">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required />
+        </div>
+        <div class="form-group">
+            <label for="start">Start Time</label>
+            <input type="datetime-local" class="form-control" id="start" name="start" required />
+        </div>
+        <div class="form-group">
+            <label for="end">End Time</label>
+            <input type="datetime-local" class="form-control" id="end" name="end" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+</body>
+</html>
