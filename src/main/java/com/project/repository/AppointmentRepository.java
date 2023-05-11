@@ -29,13 +29,13 @@ public class AppointmentRepository {
     }
 
     public List<Appointment> findByStartLessThanEqualAndEndGreaterThanEqual(LocalDateTime end, LocalDateTime start) {
-        String sql = "SELECT * FROM appointments WHERE start <= ? AND end >= ?";
+        String sql = "SELECT * FROM appointments WHERE start_t <= ? AND end_t >= ?";
         return jdbcTemplate.query(sql, new Object[] { end, start }, appointmentRowMapper);
     }
 
     public Appointment save(Appointment appointment) {
-        String sql = "INSERT INTO appointments (name, start, end) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, appointment.getName(), appointment.getStart(), appointment.getEnd());
+        String sql = "INSERT INTO appointments (name, start_t, end_t, user_id, location) VALUES (?, ?, ?, ?, ?)";
+        jdbcTemplate.update(sql, appointment.getName(), appointment.getStart(), appointment.getEnd(), appointment.getUserId(), appointment.getLocation());
         return appointment;
     }
 
@@ -45,7 +45,7 @@ public class AppointmentRepository {
         @Override
         public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
             Appointment appointment = new Appointment();
-            appointment.setId(rs.getLong("id"));
+            appointment.setId((int) rs.getLong("id"));
             appointment.setName(rs.getString("name"));
             appointment.setStart(rs.getTimestamp("start").toLocalDateTime());
             appointment.setEnd(rs.getTimestamp("end").toLocalDateTime());

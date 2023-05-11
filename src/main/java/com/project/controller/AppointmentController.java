@@ -21,6 +21,12 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
+    @GetMapping("/har")
+    public ResponseEntity<Integer> home() {
+        return new ResponseEntity<>(5, HttpStatus.OK);
+    }
+
+
     @GetMapping("/appointments")
     public ResponseEntity<List<Appointment>> getAllAppointments() {
         List<Appointment> appointments = appointmentService.getAllAppointments();
@@ -35,8 +41,9 @@ public class AppointmentController {
 
     @PostMapping("/appointments")
     public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment) {
-        LocalDateTime start = appointment.getStartTime();
-        LocalDateTime end = appointment.getEndTime();
+        System.out.print("Appointment: " + appointment);
+        LocalDateTime start = appointment.getStart();
+        LocalDateTime end = appointment.getEnd();
 
         // Check if the appointment is available
         if (appointmentService.isAvailable(start, end)) {

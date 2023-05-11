@@ -6,10 +6,12 @@ import java.time.LocalDateTime;
 
 @Data
 public class Appointment {
-    private Integer appointmentId;
-    private String appointmentName;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Integer id;
+    private String name;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private Integer userId;
     private String location;
+
+
 }
