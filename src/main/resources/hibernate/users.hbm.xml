@@ -1,0 +1,17 @@
+<hibernate-mapping>
+    <class name="com.project.model.user" table="users">
+        <id name="userId" type="int">
+            <column name="user_id" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="phone_number" />
+        </property>
+    </class>
+</hibernate-mapping>

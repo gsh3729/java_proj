@@ -12,6 +12,4 @@ public class Appointment {
     private LocalDateTime end;
     private Integer userId;
     private String location;
-
-
 }

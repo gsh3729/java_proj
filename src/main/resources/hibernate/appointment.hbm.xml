@@ -1,0 +1,23 @@
+<hibernate-mapping>
+    <class name="com.project.model.appointment" table="appointment">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="start" type="timestamp">
+            <column name="start" />
+        </property>
+        <property name="end" type="timestamp">
+            <column name="end" />
+        </property>
+        <property name="location" type="string">
+            <column name="location" />
+        </property>
+        <many-to-one name="user" class="com.project.model.user" fetch="join">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

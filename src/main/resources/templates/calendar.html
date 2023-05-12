@@ -2,23 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Calendar App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" />
 </head>
 <body>
 
 <div class="container">
     <h1>Calendar</h1>
-    <div th:replace="fragments/calendar :: calendar"></div>
+<!--    <div th:replace="fragments/calendar :: calendar"></div>-->
     <hr />
     <h2>Create Appointment</h2>
-    <form action = "#" th.action="@{/}" method = "get" >
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
+
 
     <form action="#" th:action="@{/appointments}" method="post">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" required />
+            <label for="name">Title</label>
+            <input type="text" class="form-control" id="name" name="name" required />
         </div>
         <div class="form-group">
             <label for="start">Start Time</label>
@@ -28,9 +27,21 @@
             <label for="end">End Time</label>
             <input type="datetime-local" class="form-control" id="end" name="end" required />
         </div>
+        <div class="form-group" style="display:None" >
+            <input type="text" class="form-control" id="location" name="location" value = "dibner" />
+        </div>
+        <div class="form-group" style="display:None" >
+            <input type="text" class="form-control" id="userId" name="userId"  value = -1 />
+        </div>
+        <div class="form-group" style="display:None" >
+            <input type="text" class="form-control" id="id" name="id"  value = -2 />
+        </div>
+
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
+
+
 
 </body>
 </html>

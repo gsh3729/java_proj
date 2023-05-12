@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Calendar App</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.0.0/css/bootstrap.min.css}" />
+</head>
+<body>
+
+
+<div class = "container">
+<h2>Get My Appointments</h2>
+  <form action = "#" th:action="@{/user_appointments/1}" method = "get" >
+    <button type="submit" class="btn btn-primary">My Appointments</button>
+  </form>
+</div>
+
+</body>
+</html>
