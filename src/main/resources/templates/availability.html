@@ -5,23 +5,20 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<!--<p th:text="'Hello, ' + ${name} + '!'" />-->
 
 
 <div th:replace="calendar"></div>
 
-<h2>My Appointments</h2>
+<h2>Already Booked Appointments</h2>
 <table>
   <thead>
   <tr>
-    <th>Appointment Name</th>
     <th>Start Time</th>
     <th>End Time</th>
   </tr>
   </thead>
   <tbody>
   <tr th:each="appointment : ${appointments}">
-    <td th:text="${appointment.name}"></td>
     <td th:text="${appointment.start}"></td>
     <td th:text="${appointment.end}"></td>
   </tr>

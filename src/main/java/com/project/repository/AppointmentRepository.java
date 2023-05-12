@@ -38,6 +38,11 @@ public class AppointmentRepository {
         return jdbcTemplate.query(sql, new Object[] { end, start }, appointmentRowMapper);
     }
 
+    public List<Appointment> findByStartAndEnd(LocalDateTime start, LocalDateTime end) {
+        String sql = "SELECT * FROM appointments WHERE start_t >= ? AND end_t <= ?";
+        return jdbcTemplate.query(sql, new Object[] { start, end }, appointmentRowMapper);
+    }
+
     public Appointment save(Appointment appointment) {
         String sql = "INSERT INTO appointments (name, start_t, end_t, user_id, location) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql, appointment.getName(), appointment.getStart(), appointment.getEnd(), 1, appointment.getLocation());
@@ -58,5 +63,6 @@ public class AppointmentRepository {
             return appointment;
         }
     };
+
 
 }

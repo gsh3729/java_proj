@@ -66,8 +66,24 @@ public class AppointmentController {
         return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
 
+    @GetMapping("/availability")
+    public String getAvailability(@RequestParam("start") String start, @RequestParam("end") String end, Model model) {
+        System.out.println("Start: "+ start);
+        System.out.println("End: "+ end);
+        LocalDateTime startTime = LocalDateTime.parse(start);
+        LocalDateTime endTime = LocalDateTime.parse(end);
+
+
+        List<Appointment> appointments = appointmentService.getFilteredAppointments(startTime, endTime);
+        for (int i=0; i<appointments.size();i++) {
+            System.out.println("Appointments: " + appointments.get(i));
+        }
+        model.addAttribute("appointments", appointments);
+        return "availability";
+    }
+
     @PostMapping("/appointments")
-    public ResponseEntity<Appointment> createAppointment(@ModelAttribute Appointment appointment, Model model) {
+    public String createAppointment(@ModelAttribute Appointment appointment, Model model) {
         System.out.print("Appointment: " + appointment);
         LocalDateTime start = appointment.getStart();
         LocalDateTime end = appointment.getEnd();
@@ -75,9 +91,11 @@ public class AppointmentController {
         // Check if the appointment is available
         if (appointmentService.isAvailable(start, end)) {
             Appointment createdAppointment = appointmentService.createAppointment(appointment);
-            return new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
+//            return new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
+            return "goodresult";
         } else {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
+            return "badresult";
+//            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 }

@@ -47,4 +47,8 @@ public class AppointmentService {
         return appointmentRepository.save(appointment);
     }
 
+    public List<Appointment> getFilteredAppointments(LocalDateTime start, LocalDateTime end) {
+        List<Appointment> appointments = appointmentRepository.findByStartAndEnd(start, end);
+        return appointments;
+    }
 }
