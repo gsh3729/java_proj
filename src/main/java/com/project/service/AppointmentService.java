@@ -24,12 +24,15 @@ public class AppointmentService {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private UserService userService;
+
     public List<Appointment> getAllAppointments() {
         return appointmentRepository.findAll();
     }
 
-    public List<Appointment> getAppointmentByUserId(Long id) {
-        return appointmentRepository.findByUserId(id);
+    public List<Appointment> getAppointmentByUserId(Integer id) {
+        return appointmentRepository.findByUserId(Long.valueOf(id));
     }
     public Appointment getAppointmentById(Long id) {
         return appointmentRepository.findById(id);
@@ -50,5 +53,10 @@ public class AppointmentService {
     public List<Appointment> getFilteredAppointments(LocalDateTime start, LocalDateTime end) {
         List<Appointment> appointments = appointmentRepository.findByStartAndEnd(start, end);
         return appointments;
+    }
+
+    public List<Appointment> getUserAppointments() {
+        User user = userService.getCurrentUser();
+        return getAppointmentByUserId(Long.valueOf(user.getUserId()));
     }
 }

@@ -46,4 +46,8 @@ public class UserRepository {
         }
     };
 
+    public User findByName(String name) {
+        String sql = "SELECT * FROM users WHERE name = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[] { name }, userRowMapper);
+    }
 }

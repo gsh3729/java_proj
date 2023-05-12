@@ -3,6 +3,8 @@ package com.project.controller;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.project.model.User;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +25,30 @@ public class AppointmentController {
     private AppointmentService appointmentService;
 
 //    @GetMapping("/")
-    @RequestMapping("/")
-    public String index()
-    {
-//returns to index.html
+//    @RequestMapping("/")
+//    public String index()
+//    {
+////returns to index.html
+//        return "index";
+//    }
+
+    @GetMapping("/")
+    public String main(HttpSession session, Model model) {
+        // Check if user is logged in
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null) {
+            // User is not logged in, redirect to login page
+            return "redirect:/login";
+        }
+
+//        // Add user id to model for further use
+//        model.addAttribute("userId", userId);
+//
+//        // Load appointments for the user and add to model
+//        List<Appointment> appointments = appointmentService.getAppointmentsByUserId(userId);
+//        model.addAttribute("appointments", appointments);
+
+        // Render main page
         return "index";
     }
 
@@ -60,9 +82,15 @@ public class AppointmentController {
     }
 
 
-    @GetMapping("/user_appointments/{id}")
-    public ResponseEntity<List<Appointment>> getAppointmentByUserId(@PathVariable Long id) {
-        List<Appointment> appointments = appointmentService.getAppointmentByUserId(id);
+//    @GetMapping("/user_appointments/{id}")
+//    public ResponseEntity<List<Appointment>> getAppointmentByUserId(@PathVariable Long id) {
+//        List<Appointment> appointments = appointmentService.getAppointmentByUserId(id);
+//        return new ResponseEntity<>(appointments, HttpStatus.OK);
+//    }
+
+    @GetMapping("/my_appointments")
+    public ResponseEntity<List<Appointment>> getUserAppointment() {
+        List<Appointment> appointments = appointmentService.getUserAppointments();
         return new ResponseEntity<>(appointments, HttpStatus.OK);
     }
 
