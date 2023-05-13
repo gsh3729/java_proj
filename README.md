@@ -1,4 +1,6 @@
-# Calendar And Appointment Management System
+# Calendar And Appointment Management System 
+
+## Sriharsha Gaddipati(sg7372), Sai Rajeev Koppuravuri(rk4305)
 
 ## Spring Web Application
 
