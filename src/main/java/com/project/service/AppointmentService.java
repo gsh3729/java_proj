@@ -31,15 +31,14 @@ public class AppointmentService {
         return appointmentRepository.findAll();
     }
 
-    public List<Appointment> getAppointmentByUserId(Integer id) {
-        return appointmentRepository.findByUserId(Long.valueOf(id));
+    public List<Appointment> getAppointmentByUserId(Long id) {
+        return appointmentRepository.findByUserId(id);
     }
     public Appointment getAppointmentById(Long id) {
         return appointmentRepository.findById(id);
     } //.orElse(null)
 
     public boolean isAvailable(LocalDateTime start, LocalDateTime end) {
-        // Check if there are any overlapping appointments
         List<Appointment> overlappingAppointments = appointmentRepository.findByStartLessThanEqualAndEndGreaterThanEqual(end, start);
         return overlappingAppointments.isEmpty();
     }
@@ -57,6 +56,6 @@ public class AppointmentService {
 
     public List<Appointment> getUserAppointments() {
         User user = userService.getCurrentUser();
-        return getAppointmentByUserId(Long.valueOf(user.getUserId()));
+        return getAppointmentByUserId(user.getUserId());
     }
 }

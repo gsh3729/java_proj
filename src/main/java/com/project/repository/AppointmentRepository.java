@@ -54,12 +54,12 @@ public class AppointmentRepository {
         @Override
         public Appointment mapRow(ResultSet rs, int rowNum) throws SQLException {
             Appointment appointment = new Appointment();
-            appointment.setId((int) rs.getLong("id"));
+            appointment.setId(rs.getLong("id"));
             appointment.setName(rs.getString("name"));
             appointment.setStart(rs.getTimestamp("start_t").toLocalDateTime());
             appointment.setEnd(rs.getTimestamp("end_t").toLocalDateTime());
             appointment.setLocation(rs.getString("location"));
-            appointment.setUserId((int) rs.getLong("user_id"));
+            appointment.setUserId(rs.getLong("user_id"));
             return appointment;
         }
     };

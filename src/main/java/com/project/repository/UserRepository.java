@@ -32,13 +32,12 @@ public class UserRepository {
         return user;
     }
 
-    // Other methods for updating and deleting users
 
     private RowMapper<User> userRowMapper = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
-            user.setUserId((int) rs.getLong("user_id"));
+            user.setUserId(rs.getLong("user_id"));
             user.setName(rs.getString("name"));
             user.setEmail(rs.getString("email"));
             user.setPassword(rs.getString("password"));

@@ -18,7 +18,6 @@ public class EmailService {
     private JavaMailSender javaMailSender;
 
     public void sendAppointmentConfirmation(Appointment appointment, User user) {
-        // Construct the email message
         SimpleMailMessage message = new SimpleMailMessage();
 //        message.setTo(user.getEmail());
         message.setTo("sg7372@nyu.edu");
@@ -26,7 +25,6 @@ public class EmailService {
         message.setText(String.format("Your appointment %s on %s at %s has been confirmed.",
                 appointment.getName(), appointment.getStart(), appointment.getLocation()));
 
-        // Send the email
         javaMailSender.send(message);
     }
 }

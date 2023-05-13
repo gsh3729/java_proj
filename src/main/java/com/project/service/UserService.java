@@ -30,7 +30,14 @@ public class UserService {
     }
 
     public User getCurrentUser() {
-        Long userId = (Long) httpSession.getAttribute("userId");
+        Long userId = null;
+        Object userIdObj = httpSession.getAttribute("userId");
+        if (userIdObj instanceof Integer) {
+            Integer userIdInt = (Integer) userIdObj;
+            userId = userIdInt.longValue();
+        } else if (userIdObj instanceof Long) {
+            userId = (Long) userIdObj;
+        }
         if (userId == null) {
             return null;
         }
