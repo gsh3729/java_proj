@@ -19,8 +19,8 @@ public class EmailService {
 
     public void sendAppointmentConfirmation(Appointment appointment, User user) {
         SimpleMailMessage message = new SimpleMailMessage();
-//        message.setTo(user.getEmail());
-        message.setTo("sg7372@nyu.edu");
+        message.setTo(user.getEmail());
+//        message.setTo("sg7372@nyu.edu");
         message.setSubject("Appointment Confirmation");
         message.setText(String.format("Your appointment %s on %s at %s has been confirmed.",
                 appointment.getName(), appointment.getStart(), appointment.getLocation()));

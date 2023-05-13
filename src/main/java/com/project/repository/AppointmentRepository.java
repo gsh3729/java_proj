@@ -45,7 +45,7 @@ public class AppointmentRepository {
 
     public Appointment save(Appointment appointment) {
         String sql = "INSERT INTO appointments (name, start_t, end_t, user_id, location) VALUES (?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, appointment.getName(), appointment.getStart(), appointment.getEnd(), 1, appointment.getLocation());
+        jdbcTemplate.update(sql, appointment.getName(), appointment.getStart(), appointment.getEnd(), appointment.getUserId(), appointment.getLocation());
         return appointment;
     }
 

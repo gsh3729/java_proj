@@ -44,8 +44,8 @@ public class AppointmentService {
     }
 
     public Appointment createAppointment(Appointment appointment) {
-//        User user = userRepository.findById(Long.valueOf(appointment.getUserId()));
-//        CompletableFuture.runAsync(() -> emailService.sendAppointmentConfirmation(appointment, user));
+        User user = userRepository.findById(appointment.getUserId());
+        CompletableFuture.runAsync(() -> emailService.sendAppointmentConfirmation(appointment, user));
         return appointmentRepository.save(appointment);
     }
 

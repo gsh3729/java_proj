@@ -7,6 +7,13 @@
 
 </body>
 
+<nav>
+  <ul>
+    <li><a th:href="@{/}">Home</a></li>
+    <li ><a th:href="@{/signup}">Sign Up</a></li>
+  </ul>
+</nav>
+
 <form th:action="@{/login}" method="post">
   <div>
     <label for="username">Username:</label>
